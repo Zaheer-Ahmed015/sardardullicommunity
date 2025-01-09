@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+        .login-container h2 {
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        .login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .login-container .show-password {
+            margin: 10px 0;
+            text-align: left;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0073e6;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-container button:hover {
+            background-color: #005bb5;
+        }
+        .login-container .back-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .login-container .back-link a {
+            color: #0073e6;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .login-container .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Log in</h2>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password (min 8 characters)" required>
+            <div class="show-password">
+                <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+                <label for="showPassword">Show Password</label>
+            </div>
+            <button type="submit">Log in</button>
+        </form>
+        <div class="back-link">
+            <a href="First.html">Back</a>
+        </div>
+    </div>
+
+    <script>
+        // Handle login
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                return;
+            }
+
+            // Retrieve users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+
+            // Check if the user already exists
+            if (users[email] && users[email] === password) {
+                alert("Login successful!");
+                window.location.href = "home.html"; // Redirect to home page
+            } else if (!users[email]) {
+                // If user does not exist, register the user
+                users[email] = password;
+                localStorage.setItem('users', JSON.stringify(users));
+                alert("Account created and logged in successfully!");
+                window.location.href = "home.html"; // Redirect to home page
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const showPasswordCheckbox = document.getElementById('showPassword');
+
+            passwordField.type = showPasswordCheckbox.checked ? "text" : "password";
+        }
+    </script>
+</body>
+</html>
