@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest Updates</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    header {
+      background: linear-gradient(90deg, #007BFF, #0056b3);
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    /* Update Card Styles */
+    .update-card {
+      border: none;
+      border-radius: 10px;
+      margin: 20px 0;
+      padding: 20px;
+      background: linear-gradient(145deg, #ffffff, #e6e6e6);
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .update-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2), -5px -5px 20px rgba(255, 255, 255, 0.8);
+    }
+
+    .update-card img {
+      max-width: 150px;
+      max-height: 100px;
+      margin-right: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .update-card img:hover {
+      transform: scale(1.1);
+    }
+
+    .update-details {
+      flex: 1;
+    }
+
+    .update-details h3 {
+      margin: 0 0 10px 0;
+      color: #007BFF;
+      font-size: 1.4rem;
+    }
+
+    .update-details p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .update-details .highlight {
+      color: red;
+      font-weight: bold;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 30px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .modal .close:hover {
+      background-color: rgba(255, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    Latest Updates
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Updates Section -->
+    <div id="updates">
+      <!-- Updates will be added dynamically -->
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="imageModal">
+    <span class="close" id="closeModal">&times;</span>
+    <img id="modalImage" src="" alt="Full View">
+  </div>
+
+  <script>
+    // Array of Updates
+    const updates = [
+  
+      {
+        title: "Bhartiya Gaurav Samman",
+        description: "This certificate is proudly presented to Yar Ali Khan in recognition of his exceptional dedication as programme Officer ICDS his unwavering commitment to social wefare Poshan Bhi Padhai Bhi and efforts toward social development have made a significant impact.We commend his invaluable contributions and selfless service ,inspiring others to bring positive change to society",
+        date: "2025-01-06",
+        image: "certificate.jpg" // Replace with the actual image URL
+      },
+      {
+        title: "Award Ceremony",
+        description: "Yar Ali Khan has been awarded the prestigious Rabindra Ratna Puraskar 2025. This award is a testament to his outstanding contributions and achievements in his field.",
+        date: "2025-01-04",
+        image: "43.jpg" // Replace with the actual image URL
+      },
+
+    ];
+
+    // Function to Display Updates
+    function displayUpdates() {
+      const updatesContainer = document.getElementById('updates');
+      updates.forEach(update => {
+        const today = new Date().toISOString().split('T')[0];
+
+        // Create Update Card
+        const updateCard = document.createElement('div');
+        updateCard.className = 'update-card';
+        updateCard.innerHTML = `
+          <img src="${update.image}" alt="${update.title}" onclick="showImage('${update.image}')">
+          <div class="update-details">
+            <h3>${update.title}</h3>
+            <p class="date">${update.date}</p>
+            <p>${update.description}</p>
+          </div>
+        `;
+
+        // Highlight New Updates
+        const dateElement = updateCard.querySelector('.date');
+        if (update.date === today) {
+          dateElement.classList.add('highlight');
+          dateElement.textContent += ' (New!)';
+        }
+
+        // Append Update to Container
+        updatesContainer.appendChild(updateCard);
+      });
+    }
+
+    // Function to Show Modal Image
+    function showImage(imageSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = imageSrc;
+      modal.style.display = 'flex';
+    }
+
+    // Close Modal
+    document.getElementById('closeModal').onclick = function () {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+    };
+
+    // Call Function to Display Updates
+    displayUpdates();
+  </script>
+</body>
+</html>
