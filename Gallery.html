@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sardar Dulli Community - Gallery</title>
+    <style>
+        /* General body styles */
+        body {
+            background: linear-gradient(to bottom right, #ffecd2, #fcb69f, #ff9a8b);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #ff6f61;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main content styles */
+        main {
+            padding: 30px;
+            text-align: center;
+        }
+
+        main h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Gallery grid layout */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px; /* Space between images */
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px; /* Ensure same size */
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 5px solid white;
+            border-radius: 10px;
+            animation: zoomIn 0.5s ease-in-out;
+        }
+
+        .modal .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            padding: 5px 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal p {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Sardar Dulli Community Gallery</h1>
+    </header>
+
+    <!-- Main content section -->
+    <main>
+        <h2>Explore the Sardar Dulli Community's Culture</h2>
+
+        <!-- Gallery Display -->
+        <div class="gallery-container" id="galleryContainer">
+            <div class="gallery-item">
+                <img src="badi.jpg" alt="Badi Bheak (Poonch)" onclick="showModal(this, 'Badi Bheak (Poonch)')">
+           <p>Badi Bheak,Loran(Poonch)</p>
+            </div>
+            <div class="gallery-item">
+                <img src="pic.jpg" alt="Badi Bheak, Loran" onclick="showModal(this, 'Badi Bheak, Loran')">
+                <p>Badi Bheak,Loran(Poonch)</p>
+            </div>
+            <div class="gallery-item">
+                <img src="pic.jpg" alt="Badi Bheak, Loran" onclick="showModal(this, 'Badi Bheak, Loran')">
+                <p>Badi Bheak,Loran(Poonch)</p>
+            </div>
+           
+            <div class="gallery-item">
+                <img src="logo2.png" alt="Logo of Sardar Dulli Community" onclick="showModal(this, 'Logo of Sardar Dulli Community')">
+                <p>Logo</p>
+            </div>
+            <div class="gallery-item">
+                <img src="1.jpg" alt="Urs at Badi Bheak" onclick="showModal(this, 'Urs at Badi Bheak')">
+                <p>Urs at Badi Bheak</p>
+            </div>
+            <div class="gallery-item">
+                <img src="2.jpg" alt="Loran,Poonch" onclick="showModal(this, 'Loran,Poonch')">
+                <p>Loran,Poonch</p>
+            </div>
+            <div class="gallery-item">
+                <img src="3.jpg" alt="Loran,Poonch" onclick="showModal(this, 'Loran,Poonch')">
+                <p>Loran,Poonch</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Expanded View">
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to show modal
+        function showModal(imgElement, description) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalDescription = document.getElementById('modalDescription');
+            modalImage.src = imgElement.src;
+            modalDescription.textContent = description;
+            modal.style.display = 'flex';
+        }
+
+        // Function to close modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
