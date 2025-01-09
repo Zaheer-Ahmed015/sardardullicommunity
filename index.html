@@ -13,40 +13,22 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            text-align: center;
         }
 
         /* Header styles */
         header {
             background-color: #4789cb;
-            color: #000000;
+            color: #040000;
             padding: 20px;
             text-align: center;
         }
 
-        /* Main content padding */
-        main {
-            padding: 20px;
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
         }
 
-        /* Home page visibility */
-        .home-page {
-            display: block;
-        }
-
-        /* Login page visibility */
-        .login-page {
-            display: none;
-            padding: 20px;
-        }
-
-        /* Center the image */
-        .home-page img {
-            display: block;
-            margin: 20px auto;
-        }
-
-        /* Style for the scrolling heading */
+        /* Scrolling heading styles */
         .scrolling-heading {
             white-space: nowrap;
             overflow: hidden;
@@ -63,96 +45,150 @@
             }
         }
 
-        /* Button styles */
-        button {
-            padding: 10px;
-            margin: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            transition: background-color 0.3s ease;
+        /* Navigation bar styles */
+        nav {
+            background-color: #222;
+            overflow: hidden;
+            padding: 10px 0;
         }
 
-        /* Center the login button */
-        .button-container {
-            display: flex;
-            justify-content: center; /* Center the button horizontally */
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Login icon button styles */
-        #loginIcon {
-            font-size: 20px;
-            padding: 10px 20px;
+        nav a:hover {
             background-color: #4CAF50;
             color: #fff;
         }
 
-        #loginIcon:hover {
-            background-color: #45a049; /* Darker green on hover */
+        /* Home page content */
+        main {
+            text-align: center;
+            padding: 20px;
         }
 
-        /* Hidden class for toggling visibility */
-        .hidden {
-            display: none;
+        main img {
+            max-width: 90%;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .social-links {
+            margin: 10px 0;
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .social-links a i {
+            margin-right: 8px;
+            font-size: 25px;
+        }
+
+        .social-links a:hover {
+            color: #4CAF50;
+        }
+
+        .footer-text {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Enhanced footer styles */
+        .footer-container {
+            padding: 30px;
+            color: #fff;
+            background-color: #222;
+        }
+
+        .footer-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .social-links a i {
+            font-size: 30px;
+            padding: 10px;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        .social-links a i.fab.fa-twitter {
+            background-color: #1DA1F2;
+        }
+
+        .social-links a i.fab.fa-facebook-f {
+            background-color: #3b5998;
+        }
+
+        .social-links a i.fab.fa-instagram {
+            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header>
+        <h1 class="scrolling-heading"><b>Welcome to Sardar Dulli Community of Jammu & Kashmir</b></h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="Updates.html">Updates</a>
+    </nav>
+
     <!-- Home Page Section -->
     <div id="homePage" class="home-page">
-        <header>
-            <h1 class="scrolling-heading"><b>Welcome to Sardar Dulli Community of Jammu & Kashmir</b></h1>
-        </header>
         <main>
-            <img src="logo2.png" width="1000" height="800" alt="Logo"> 
+            <img src="logo2.png" alt="Logo">
             <p>Discover the history and culture of the Sardar Dulli community.</p>
-            <!-- Login button with icon in the center -->
-            <div class="button-container">
-                <a href="login page.html" id="loginIcon" style="text-decoration: none; padding: 10px 20px; background-color: #4CAF50; color: white; border-radius: 5px;">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </a>
+        </main>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <h2>Connect with Us</h2>
+            <div class="social-links">
+                <a href="https://x.com/JKDulli_Sardar?s=09" target="_blank">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="https://www.facebook.com/sardardullikhan" target="_blank">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://www.instagram.com/mustafai_khan?igsh=YzljYTk1ODg3Zg==" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
             </div>
-        </main>
-    </div>
-
-    <!-- Login Page Section -->
-    <div id="loginPage" class="login-page hidden">
-        <header>
-            <h1>Login</h1>
-        </header>
-        <main>
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <button type="submit">Login</button>
-            </form>
-            <button onclick="goBackHome()">Back to Home</button>
-        </main>
-    </div>
-
-    <script>
-        // Show the login page and hide the home page
-        function showLoginPage() {
-            document.getElementById('homePage').classList.add('hidden'); // Hide home page
-            document.getElementById('loginPage').classList.remove('hidden'); // Show login page
-        }
-
-        // Go back to the home page and hide the login page
-        function goBackHome() {
-            document.getElementById('loginPage').classList.add('hidden'); // Hide login page
-            document.getElementById('homePage').classList.remove('hidden'); // Show home page
-        }
-
-        // Handle login form submission
-        function handleLogin(event) {
-            event.preventDefault(); // Prevent the default form submission
-            alert('Logged in successfully!');
-        }
-    </script>
+            <p class="footer-text">© 2024 Sardar Dulli Community. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
