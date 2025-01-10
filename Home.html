@@ -13,27 +13,29 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            overflow-x: hidden;
         }
 
-        /* Header styles */
+        /* Header styles with scrolling text */
         header {
             background-color: #4789cb;
             color: #040000;
-            padding: 20px;
-            text-align: center;
+            padding: 20px 0;
+            overflow: hidden;
+            position: relative;
+            height: 80px;
+            width: 100%;
         }
 
         header h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin: 0;
-        }
-
-        /* Scrolling heading styles */
-        .scrolling-heading {
             white-space: nowrap;
-            overflow: hidden;
-            box-sizing: border-box;
+            position: absolute;
             animation: scrollText 10s linear infinite;
+            display: block;
+            width: 100%;
+            text-align: center;
         }
 
         @keyframes scrollText {
@@ -48,63 +50,123 @@
         /* Navigation bar styles */
         nav {
             background-color: #222;
-            overflow: hidden;
-            padding: 10px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 20px;
+            width: 100%;
         }
 
-        nav a {
-            float: left;
-            display: block;
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
             color: white;
-            text-align: center;
-            padding: 15px 20px;
             text-decoration: none;
             font-size: 18px;
+            padding: 8px 12px;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        nav a:hover {
+        .nav-links a:hover {
             background-color: #4CAF50;
-            color: #fff;
+            color: white;
+        }
+
+        /* Hamburger menu styles for mobile */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #222;
+                z-index: 1000;
+            }
+
+            .nav-links a {
+                text-align: center;
+                padding: 15px;
+                border-bottom: 1px solid #444;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+                animation-duration: 12s;  /* Adjust animation speed for small screens */
+            }
         }
 
         /* Home page content */
         main {
             text-align: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px); /* Fill viewport minus header and footer */
         }
 
         main img {
-            max-width: 90%;
+            max-width: 80%;
             height: auto;
             margin: 20px 0;
+        }
+
+        main p {
+            font-size: 1.5rem;
+            margin: 10px 0;
         }
 
         /* Footer styles */
         footer {
             background-color: #333;
-            color: #fff;
+            color: white;
             text-align: center;
             padding: 20px;
         }
 
+        .footer-container {
+            padding: 20px;
+        }
+
         .social-links {
-            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
         }
 
         .social-links a {
-            color: #fff;
-            margin: 0 10px;
+            color: white;
             font-size: 20px;
             text-decoration: none;
             transition: color 0.3s;
-            display: inline-flex;
-            align-items: center;
         }
 
         .social-links a i {
             margin-right: 8px;
             font-size: 25px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .social-links a:hover {
@@ -112,70 +174,54 @@
         }
 
         .footer-text {
-            margin-top: 10px;
             font-size: 14px;
-        }
-
-        /* Enhanced footer styles */
-        .footer-container {
-            padding: 30px;
-            color: #fff;
-            background-color: #222;
-        }
-
-        .footer-container h2 {
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .social-links a i {
-            font-size: 30px;
-            padding: 10px;
-            border-radius: 50%;
-            margin: 0 10px;
         }
 
         .social-links a i.fab.fa-twitter {
             background-color: #1DA1F2;
+            padding: 8px;
+            border-radius: 50%;
         }
 
         .social-links a i.fab.fa-facebook-f {
             background-color: #3b5998;
+            padding: 8px;
+            border-radius: 50%;
         }
 
         .social-links a i.fab.fa-instagram {
             background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+            padding: 8px;
+            border-radius: 50%;
         }
+
     </style>
 </head>
 <body>
-
     <!-- Header Section -->
     <header>
-        <h1 class="scrolling-heading"><b>Welcome to Sardar Dulli Community of Jammu & Kashmir</b></h1>
+        <h1>Welcome to Sardar Dulli Community of Jammu & Kashmir</h1>
     </header>
-
     <!-- Navigation Bar -->
     <nav>
-        <a href="home.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="Updates.html">Updates</a>
-        <a href="contact.html">Contact</a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links">
+            <a href="Home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="Updates.html">Updates</a>
+        </div>
     </nav>
-
     <!-- Home Page Section -->
-    <div id="homePage" class="home-page">
-        <main>
-            <img src="logo2.png" alt="Logo">
-            <p>Discover the history and culture of the Sardar Dulli community.</p>
-        </main>
-    </div>
-
+    <main>
+        <img src="logo2.png" alt="Logo">
+        <p>Discover the history and culture of the Sardar Dulli community.</p>
+    </main>
     <!-- Footer Section -->
     <footer>
         <div class="footer-container">
-            <h2>Connect with Us</h2>
             <div class="social-links">
                 <a href="https://x.com/JKDulli_Sardar?s=09" target="_blank">
                     <i class="fab fa-twitter"></i> Twitter
@@ -183,13 +229,18 @@
                 <a href="https://www.facebook.com/sardardullikhan" target="_blank">
                     <i class="fab fa-facebook-f"></i> Facebook
                 </a>
-                <a href="https://www.instagram.com/mustafai_khan?igsh=YzljYTk1ODg3Zg==" target="_blank">
+                <a href="https://www.instagram.com/dulitribe?igsh=YzljYTk1ODg3Zg==" target="_blank">
                     <i class="fab fa-instagram"></i> Instagram
                 </a>
             </div>
             <p class="footer-text">© 2024 Sardar Dulli Community. All rights reserved.</p>
         </div>
     </footer>
-
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
